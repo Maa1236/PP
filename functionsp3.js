@@ -27,6 +27,23 @@ function insertString(string, insertS, position) {
 var result = insertString("My random string", "JS", 10);
 console.log(result);
 
+// v.2
+
+function insertString(string, insertS, position) {
+    var newString = '';
+    if (typeof position === 'undefined') {
+        return (newString = insertS + ' ' + string);
+    }
+    for (var i = 0; i < string.length; i++) {
+        if (i === position) {
+            newString += insertS;
+        }
+        newString += string[i];
+    }
+    return newString;
+}
+var result = insertString('test', 'JS', 2);
+
 
 
 /*3.Write a program to filter out falsy values from the array.
