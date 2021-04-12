@@ -42,9 +42,24 @@ function insertString(string, insertS, position) {
     }
     return newString;
 }
-var result = insertString('test', 'JS', 2);
+var result = insertString("My random string", 'JS', 10);
+console.log(result);
 
+/* 2.Write a program to join all elements of the array into a string skipping elements that are
+undefined, null, NaN or Infinity.
+[NaN, 0, 15, false, -22, "", undefined, 47, null]
+*/
 
+function filterOutandAddtoString(arr) {
+    var add = "";
+    for (var i = 0; i < arr.length; i++) {
+        if (isFinite(arr[i]) && arr[i] !== null) {
+            add += arr[i];
+        }
+    }
+    return add;
+}
+console.log(filterOutandAddtoString([NaN, 0, 15, false, -22, "", undefined, 47, null]));
 
 /*3.Write a program to filter out falsy values from the array.
 [NaN, 0, 15, false, -22, "", undefined, 47, null] -> [15, -22, 47]*/
@@ -99,9 +114,84 @@ var res = lastElements([7, 9, 0, -2], 2);
 console.log(res);
 
 
-/*6.
+/*6.Write a function to create a specified number of elements with pre-filled numeric value
+array.
+6, 0 -> [0, 0, 0, 0, 0, 0]
+2, "none" ["none", "none"]
+2 -> [null, null]
+*/
 
-/*Write a function to hide email address.
+function createArr(n, el) {
+    var arr = [];
+    for (var i = 0; i < n; i++) {
+        if (typeof el === "undefined") {
+            el = null;
+        }
+        arr[arr.length] = el;
+    }
+    return arr;
+}
+console.log(createArr(2, "none"));
+
+/*7. Write a function that says whether a number is perfect.
+28 -> 28 is a perfect number.
+Note: According to Wikipedia: In number theory, a perfect number is a positive integer that is equal to the sum
+of its proper positive divisors, that is, the sum of its positive divisors excluding the number itself (also known
+as its aliquot sum). Equivalently, a perfect number is a number that is half the sum of all of its positive divisors
+(including itself).
+E.g.: The first perfect number is 6, because 1, 2 and 3 are its proper positive divisors, and 1 + 2 + 3 = 6.
+
+Equivalently, the number 6 is equal to half the sum of all its positive divisors: (1 + 2 + 3 + 6) / 2 = 6. The next
+perfect number is 28 = 1 + 2 + 4 + 7 + 14. This is followed by the perfect numbers 496 and 8128.
+*/
+
+function perfectNumber(n) {
+    var arrOfDivisors = [],
+        result = 0;
+    for (var i = 0; i < n; i++) {
+        if (n % i === 0 && i > 0) {
+            arrOfDivisors[arrOfDivisors.length] = i;
+        }
+    }
+    for (var j = 0; j < arrOfDivisors.length; j++) {
+        result += arrOfDivisors[j];
+    }
+    return result === n;
+}
+console.log(perfectNumber(8128));
+
+/*8.Write a function to find a word within a string.
+"The quick brown fox", "fox" -> "fox" was found 1 times"
+"aa bb cc dd aa", "aa" -> "aa" was found 2 times"
+*/
+
+function wordCount(string, word) {
+
+    var apperances = 0,
+        res = "";
+
+    for (i = 0; i < string.length; i++) {
+        if (string[i] === word[0]) {
+            for (j = i; j < i + word.length; j++) {
+                if (string[j] === word[j - i]) {
+                    res += string[j];
+                }
+                if (res === word) {
+                    apperances++;
+                }
+            }
+            res = "";
+        }
+    }
+    return word + "," + apperances;
+}
+
+console.log(wordCount('The quick brown fox', 'fox'));
+console.log(wordCount('aa, bb, cc, dd, aa', 'aa'));
+
+
+
+/* 9 Write a function to hide email address.
 "myemailaddress@bgit.rs" -> "mye...@bgit.rs"*/
 
 function hideEmail(email) {
@@ -127,3 +217,28 @@ function hideEmail(email) {
 
 var res = hideEmail("maaachak@gmail.com");
 console.log(res);
+
+/*10. Write a program to find the most frequent item of an array.
+[3, "a", "a", "a", 2, 3, "a", 3, "a", 2, 4, 9, 3]
+*/
+
+
+function mostFrequentEl(arr) {
+    var el = "",
+        elMax = 1,
+        mostFrequent = false;
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = i; j < arr.length; j++) {
+            if (arr[i] === arr[j]) {
+                el += arr[i];
+            }
+            if (el.length > elMax) {
+                elMax = el.length;
+                mostFrequent = arr[i];
+            }
+        }
+        el = "";
+    }
+    return mostFrequent;
+}
+console.log(mostFrequentEl([3, 7, "a", "a", "a", 2, 3, "a", 3, "a", 2, 4, 9, 3]));
