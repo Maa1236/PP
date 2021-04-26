@@ -94,6 +94,58 @@ console.log(studentGrades(["Micahel", "Anne", "Frank", "Joe", "John", "David", "
     51, 83, 59
 ]));
 
+/*
+4. Sort a previously defined array. Place its sorted values into a new array whose
+values are equivalent to the first arrays values multiplied by 2.
+Input: [ 13, 11, 5, 6,15, 1, 8, 12 ]
+Output: [ 2, 10, 12, 16, 22, 24, 26, 30 ]
+*/
+
+function sortArray(arr) {
+    var temp = arr[0],
+        newArr = [],
+        res = [];
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr.length - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    for (var i = 0; i < arr.length; i++) {
+        newArr[newArr.length] = arr[i];
+        res[i] = arr[i] * 2;
+    }
+    return res;
+}
+console.log(sortArray([13, 11, 15, 5, 6, 1, 8, 12]));
+
+/*
+(skip :))Sort a previously defined array in a descending order and display it in the
+console.
+Input: [ 13, 11, 15, 5, 6, 1, 8, 12 ]
+Output: [ 15, 13, 12, 11, 8, 6, 5, 1 ]
+*/
+
+function sortArray2(arr) {
+    var temp = arr[0],
+        newArr = [];
+    for (i = 0; i < arr.length; i++) {
+        for (j = 0; j < arr.length - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+            newArr[i] = arr[j];
+        }
+    }
+    return newArr;
+}
+console.log(sortArray2([13, 11, 15, 5, 6, 1, 8, 12]));
+
 
 /*6.Write a program that uses a loop to add all the even numbers from 1 to 1000 and
 subtracts all the odd numbers 1 to 500 from the calculated sum. The result should then

@@ -289,3 +289,63 @@ function calculateBMI(weight, height) {
 }
 console.log(calculateBMI(46, 1.48));
 
+/*15.Write a function that takes a list of strings and prints them, one per line, in a rectangular
+frame.:
+For example the list ["Hello", "World", "in", "a", "frame"] gets
+printed as:
+*********
+* Hello *
+* World *
+* in    *
+* a     *
+* frame *
+*********
+
+*/
+
+function squareStar(array) {
+    var res = "",
+        res1 = "",
+        maxi = array[0],
+        blank = 0;
+    for (var j = 0; j < array.length; j++) {
+        if (array[j].length > maxi.length) {
+            maxi = array[j];
+        }
+        res1 += array[j] + '\n';
+    }
+
+    for (var i = 0; i < maxi.length + 4; i++) {
+        res += '*';
+    }
+    res += '\n';
+
+    for (var i = 0; i < array.length; i++) {
+        blank = maxi.length - array[i].length;
+        var tabs = '';
+        for (k = 0; k < blank; k++) {
+            tabs += " ";
+        }
+        for (var j = 0; j < maxi.length; j++) {
+            if (j === 0) {
+                res += "* ";
+            } else if (j === maxi.length - 1) {
+                res += " *";
+            } else if (j === maxi.length - 2) {
+
+                res += array[i] + tabs;
+            }
+        }
+        res += '\n';
+
+    }
+
+    for (var i = 0; i < maxi.length + 4; i++) {
+        res += '*';
+    }
+    return res;
+
+}
+var stars = squareStar(["Some", "other", "looooonger", "array", "for", "test"]);
+console.log(stars);
+

@@ -224,20 +224,20 @@ console.log(res);
 
 
 function mostFrequentEl(arr) {
-    var el = "",
+    var el = [],
         elMax = 1,
         mostFrequent = false;
     for (var i = 0; i < arr.length; i++) {
         for (var j = i; j < arr.length; j++) {
             if (arr[i] === arr[j]) {
-                el += arr[i];
+                el[el.length]= arr[i];
             }
             if (el.length > elMax) {
                 elMax = el.length;
                 mostFrequent = arr[i];
             }
         }
-        el = "";
+        el = [];
     }
     return mostFrequent;
 }
