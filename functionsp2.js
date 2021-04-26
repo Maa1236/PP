@@ -58,21 +58,6 @@ function lettersCount(string, a) {
 var result = lettersCount("My random string", "n");
 console.log(result);
 
-// v.2
-
-function lettersCount(string, a) {
-    var count = 0;
-    for (var i = 0; i < string.length; i++) {
-
-        if (string[i] === a) {
-            count++;
-        }
-    }
-    return count;
-}
-var result = lettersCount("My random string", "n");
-console.log(result);
-
 /*5.5. Write a function to find the position of the first occurrence of a character in a string. The
 result should be the position of character. If there are no occurrences of the character, the
 function should return -1.
