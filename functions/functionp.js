@@ -89,6 +89,25 @@ function squareStar(n) {
 var stars = squareStar(5);
 console.log(stars);
 
+// v.2
+
+function stars(a) {
+    var res = '';
+    for (var i = 0; i < a; i++) {
+        for (var j = 0; j < a; j++) {
+            if (i === 0 || i === a - 1 || j === 0 || j === a - 1) {
+                res += '*';
+            } else {
+                res += " ";
+            }
+        }
+        res += '\n';
+    }
+    return res;
+}
+var result = stars(7);
+console.log(result);
+
 // Write a program that draws a horizontal chart representing three given values. For
 // example, if values are 5, 3, and 7, the program should draw:
 // * * * * *
@@ -115,6 +134,20 @@ function horizontalChart(a, b, c) {
 
 var chart = horizontalChart(5, 3, 7);
 console.log(chart);
+
+// v.2
+
+function chart() {
+    var res = "";
+    for (var i = 0; i < arguments.length; i++) {
+        for (var j = 0; j < arguments[i]; j++) {
+            res += '*\t';
+        }
+        res += '\n';
+    }
+    return res;
+}
+console.log(chart(5, 3, 7, 12, 6, 8, 2));
 
 // 7. Write a program that calculates a number of digits of a given number.
 
