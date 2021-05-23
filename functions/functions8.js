@@ -68,6 +68,18 @@ Output: pera.peric@gmail.com*/
     }
 })("pera", "peric")();
 
+
+/*5. Write a function that returns a function that calculates a decimal value of the given octal
+number.
+Input: 034
+Output: 28*/
+
+(function calculateDec() {
+    return function(octal) {
+        console.log(parseInt(octal, 8));
+    }
+})()("034");
+
 /*6.Write a function that checks if a given string is valid password. The password is valid if it
 is at least 6 characters long and contains at least one digit. The function should receive
 two callbacks named successCallback and errorCallback that should be called in case
