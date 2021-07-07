@@ -2,22 +2,6 @@
 Function arguments: ["hello", "there", "ES", 6]
 Output: ["Hello", "There", "ES"]*/
 
-// let array = ["hello", "there", "ES", 6];
-// let newArray = [];
-
-// function capitalize(array) {
-
-//     array.forEach(element => {
-//         if (typeof element === "string") {
-//             newArray.push(element.split('')[0].toUpperCase() + element.slice(1, element.length));
-//         }
-
-//     });
-//     return newArray;
-// }
-
-// console.log(capitalize(array))
-
 let array = ["hello", "there", "ES", 6];
 let newArray = [];
 
@@ -34,74 +18,41 @@ const capitalize = (array) => {
 
 console.log(capitalize(array))
 
-// v.2. pitanje zasto undefined i kako ga se resiti
-
-// let array = ["hello", "there", "ES", 6];
-// let newArray = [];
-
-// const capitalize = (array) => {
-
-//    newArray = array.map(element => {
-//         if (typeof element === "string") {
-//           return element.split('')[0].toUpperCase() + element.slice(1, element.length);
-//         }
-//     });
-//     return newArray;
-// }
-
-// console.log(capitalize(array))
-
 /*2.Write a function that calculates sale tax that should be paid for the product of the given price.
 Use a constant to set a fixed value of the tax rate (i.e. 20% in Serbia).
 Input: [{ name: “Banana”, price: 120 }, {name: “Orange”, price: 100}]
 Output: [{ name: “Banana”, price: 144 }, { name: “Orange”, price: 120 }] // product full price
 Output2: [ 24, 20 ] // tax only*/
 
-const products = [{ name: "Banana", price: 120.23 }, {
-    name: "Orange",
-    price: 100
-}]
-const productsWithTax = products.map(product => {
+
+const products = [{ name: "Banana", price: 120.23 }, { name: "Orange", price: 100 }];
+
+const productPrice = products.map(product => {
     const { price: prodPrice } = product;
     const newProd = {
         ...product,
-        price: Number.parseFloat(prodPrice),
-        priceWithTax: prodPrice * 1.2,
-        tax: prodPrice * 0.2
+        price: parseInt(prodPrice * 1.2),
+        tax: parseInt(prodPrice * 0.2)
     }
     return newProd
 })
-console.log(products);
-console.log(productsWithTax);
+
+const productTax = products.map(product => {
+    const { price: prodPrice } = product;
+    const newProd1 = {
+        ...product,
+        tax: parseInt(prodPrice * 0.2)
+    }
+    return newProd1.tax
+})
+
+console.log(productPrice);
+console.log(productTax)
 
 /*3.Write a function that increases each element of the given array by the given value. If the value is
 omitted, increase each element of the array by 1.
 Input: [4, 6, 11, -9, 2.1], 2
 Output: [6, 8, 13, -7, 4.1]*/
-
-let array = [4, 6, 11, -9, 2.1];
-let val;
-let newArray = [];
-
-const increase = (array, val) => {
-    if (!val) {
-        array.forEach(element => {
-            newArray.push(element + 1);
-        });
-    } else {
-        array.forEach(element => {
-            newArray.push(element + val);
-
-        });
-    }
-
-    return newArray;
-}
-
-console.log(increase(array, 10))
-
-// v.2 
-
 
 let array = [4, 6, 11, -9, 2.1],
     val,
@@ -118,7 +69,7 @@ const increase = (array, val) => {
 
 console.log(increase(array, 2))
 
-// v.3.final
+// v.2
 
 let array = [4, 6, 11, -9, 2.1],
     val,
@@ -196,30 +147,11 @@ console.log(filterInt([1.6, 11.34, 9.23, 7, 3.11, 8]))
 Function arguments: 23, 11.5, 9, "abc", 45, 28, 553
 Output: [45, 553]*/
 
-const filterInt5 = (array) => {
-    let result = [];
-    let filteredArray = array.filter(el => Number.isInteger(el));
-    filteredArray.forEach(element => {
-        if (element.toString().indexOf("5") > -1) {
-            result.push(element);
-        }
-    });
-    return result;
-}
-
-console.log(filterInt5([23, 11.5, 9, "abc", 45, 28, 553]));
-
-//v.2
-
 const filterInt5 = (...numbers) => {
     let result = [];
-    let filteredArray = [];
     let args = [...numbers];
-    for (let i = 0; i < args.length; i++) {
-        if (Number.isInteger(args[i])) {
-            filteredArray.push(args[i]);
-        }
-    }
+
+    let filteredArray = args.filter(el => Number.isInteger(el));
     filteredArray.forEach(element => {
         if (element.toString().includes("5")) {
             result.push(element);
@@ -230,21 +162,6 @@ const filterInt5 = (...numbers) => {
 
 console.log(filterInt5(23, 11.5, 9, "abc", 45, 28, 553));
 
-// v.3 final
-
-
-const filterInt5 = (array) => {
-    let result = [];
-    let filteredArray = array.filter(el => Number.isInteger(el));
-    filteredArray.forEach(element => {
-        if (element.toString().includes("5")) {
-            result.push(element);
-        }
-    });
-    return result;
-}
-
-console.log(filterInt5([23, 11.5, 9, "abc", 45, 28, 553]));
 
 
 /*8.Write a function that returns indexes of the elements greater than 10.
@@ -273,51 +190,16 @@ d. Write a function that checks if all persons are older than 20.*/
 // a.
 
 let persons = [{ name: "John", age: 23 }, { name: "Jim", age: 26 }, { name: "Marie", age: 44 }]
-    // b.
-    // const olderThan25 = (array) => {
-    //     let newArr = [];
-    //     array.forEach(element => {
-    //         if (element.age > 25) {
-    //             newArr.push(element.name)
-    //         }
-    //     });
-    //     return newArr;
-    // }
 
-// console.log(olderThan25(persons))
+//b.
 
 const olderThan25 = (array) => array.filter(element => { if (element.age > 25) { console.log(element.name) } });
 olderThan25(persons)
 
-// let persons = [{ name: "John", age: 23 }, { name: "Jim", age: 26 }, { name: "Marie", age: 34 }]
-
-// const olderThan25 = (array) => {
-//     let newArr = [];
-//     return array.map(element => {
-//         if (element.age > 25) {
-//             return element.name
-//         }
-//     });
-// }
-
-// console.log(olderThan25(persons))
-
 // c.
-// const olderThan40 = (array) => {
-//     let includes = false;
-//     array.forEach(element => {
-//         if (element.age < 40) {
-//             includes = true;
-//         }
-//     });
-//     return includes;
-// }
-
-// console.log(olderThan40(persons))
 
 const olderThan40 = (array) => array.some(element => element.age > 40)
 console.log(olderThan40(persons))
-
 
 // d.
 const olderPersons = (array) => array.every(el => el.age > 20)
@@ -339,17 +221,6 @@ console.log(positiveInteger([3, -11, 9, 5, 6]))
 Input: [2, 8, 3]
 Output: 48*/
 
-// const productNum = (array) => {
-//     let sum = 1;
-//     array.forEach(element => {
-//          sum *= element;
-//     });
-// return sum;
-// } 
-
-// console.log(productNum( [2, 8, 3]))
-
-//v.2
 const productNum = (array) => array.reduce((x, y) => x * y)
 console.log(productNum([2, 8, 3]))
 
